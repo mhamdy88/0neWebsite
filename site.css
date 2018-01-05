@@ -1,0 +1,43 @@
+.landingPageOverlay {
+    background-color: rgb(255, 255, 255);
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    z-index: 0;
+    top: 0px;
+    left: 0px;
+}
+
+body {
+    background-color: lightgray;
+}
+
+.initZerobutton {
+    position: fixed;
+    top: 10%;
+    right: 5%;
+    z-index: 10;
+}
+
+.initZeroOverlay_before {
+    /* width: 500px;
+    height: 500px; */
+    background-color: rgb(255, 255, 255);
+}
+
+.initZeroOverlay_after {
+    position: fixed;
+    width: 100px;
+    height: 100px;
+    top: 10px;
+    border-radius: 0% 50% 50% 50%;
+}
+
+.initZeroOverlay_before span.menuIcon{
+display: none;
+}
+.menuIcon{
+    font-size: xx-large;
+    padding-top: 30px;
+    padding-right: 20px;
+}
