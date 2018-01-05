@@ -23,6 +23,7 @@ body {
     /* width: 500px;
     height: 500px; */
     background-color: rgb(255, 255, 255);
+    
 }
 
 .initZeroOverlay_after {
@@ -33,11 +34,41 @@ body {
     border-radius: 0% 50% 50% 50%;
 }
 
-.initZeroOverlay_before span.menuIcon{
-display: none;
+.initZeroOverlay_before span.menuIcon {
+    display: none;
 }
-.menuIcon{
+
+.hide {
+    display: none;
+}
+.showLogo{
+    display: block;
+}
+.menuIcon {
     font-size: xx-large;
     padding-top: 30px;
     padding-right: 20px;
+}
+
+.menu-close {}
+
+.menuItemList {
+    text-align: center;
+    margin-top: 20%;
+}
+
+.menuItem {
+    margin-top: 15px;
+}
+
+.menuItem a {
+    color: #000;
+    background-color: lightgray;
+    border-color: #000000;
+}
+
+#switch {
+    position: fixed;
+    right: 14.7%;
+    
 }

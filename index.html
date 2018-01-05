@@ -14,13 +14,46 @@
 
 <body class="bodyInitialPage">
     <div class="initZerobutton">
-        <img src="./switch.png" style="z-index:11;width:50px" />
+        <img id="switch" src="./switch2.png" style="z-index:11;width:50px;" />
+        <img id="logo" src="./logo.png" style="width:262px;" />
     </div>
     <div class="landingPageOverlay initZeroOverlay_before">
         <div class="container">
             <div class="row">
                 <div class="col-md-1">
-                    <span class="menuIcon glyphicon glyphicon-menu-hamburger"></span>
+                    <span class="menuIcon glyphicon glyphicon-menu-hamburger hide"></span>
+                </div>
+            </div>
+            <!-- <div class="row">
+                <div class="col-md-1">
+                    <span class="menu-close glyphicon glyphicon-menu-hamburger hide"></span>
+                </div>
+            </div> -->
+            <div class="menuItemList hide">
+                <div class="row menuItem">
+                    <div class="col-md-1">
+                        <a class="btn">MenuItem 1</a>
+                    </div>
+                </div>
+                <div class="row menuItem">
+                    <div class="col-md-1">
+                        <a class="btn">MenuItem 2</a>
+                    </div>
+                </div>
+                <div class="row menuItem">
+                    <div class="col-md-1">
+                        <a class="btn">MenuItem 3</a>
+                    </div>
+                </div>
+                <div class="row menuItem">
+                    <div class="col-md-1">
+                        <a class="btn">MenuItem 4</a>
+                    </div>
+                </div>
+                <div class="row menuItem">
+                    <div class="col-md-1">
+                        <a class="btn">MenuItem 5</a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -30,9 +63,39 @@
 <script>
 
     $(document).ready(function () {
+        $("#logo").css("opacity", "0");
         $(".initZerobutton").click(function () {
+            $("#logo").animate({ opacity: '1' }, 1000, function () {
+                //$("#switch").remove();  
+            });
             $('.landingPageOverlay').switchClass("initZeroOverlay_before", "initZeroOverlay_after", 1000, "easeInOutQuad")
+            setTimeout(() => {
+                $('.menuIcon').removeClass('hide');
+            }, 1000);
+
+
+            //$("#logo").removeClass("hide");//.show(1000);
+            $('.landingPageOverlay').click(function () {
+                var isOpen = $(this).hasClass('initZeroOverlay_before');
+                if (isOpen) {
+                    //Close Menu
+                    $('.menuItemList').addClass('hide');
+                    $(this).switchClass("initZeroOverlay_before", "initZeroOverlay_after", 1000, "easeInOutQuad")
+                    setTimeout(() => {
+                        $('.menuIcon').removeClass('hide');
+                    }, 1000);
+                } else {
+                    //Opens Menu                
+                    $(this).switchClass("initZeroOverlay_after", "initZeroOverlay_before", 1000, "easeInOutQuad");
+                    $('.menuIcon').addClass('hide');
+                    setTimeout(() => {
+                        $('.menuItemList').removeClass('hide');
+                    }, 1000);
+                }
+            });
         });
+
+
     });
 
 
