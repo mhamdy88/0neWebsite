@@ -14,7 +14,7 @@
 
 <body class="bodyInitialPage">
     <div class="initZerobutton">
-        <img id="switch" src="./switch2.png" style="z-index:11;width:50px;" />
+        <img id="switch" src="./switch2.png" style="z-index:11;width:262px;" />
         <img id="logo" src="./logo.png" style="width:262px;" />
     </div>
     <div class="landingPageOverlay initZeroOverlay_before">
@@ -66,7 +66,7 @@
         $("#logo").css("opacity", "0");
         $(".initZerobutton").click(function () {
             $("#logo").animate({ opacity: '1' }, 1000, function () {
-                //$("#switch").remove();  
+                $("#switch").remove();  
             });
             $('.landingPageOverlay').switchClass("initZeroOverlay_before", "initZeroOverlay_after", 1000, "easeInOutQuad")
             setTimeout(() => {

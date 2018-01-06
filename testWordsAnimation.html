@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
+        crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div>
+        <p style="position: relative;" class="classOne">If you
+            <span id='oldSpan' style="position:relative;">click on me</span>, I will disappear.</p>
+    </div>
+
+    <div style="z-index:-1">
+        <span>another </span>
+        <span>paragraph,</span>
+        <span>just</span>
+        <span>try</span>
+        <span>to</span>
+        <span id='newSpan' style="position: absolute">click on me</span>
+    </div>
+
+    <input type="button" value="Run" id='btnRun' />
+    <p style='position: absolute; background: white;z-index: 10;;' id='p1'>
+        Every new version of C# language specification brings us something tasty to try, something that makes the developer’s life
+        easier and the code more clean and understandable. Fortunately, version 7.0 is not an exception! With the following
+        description, I’d like to show one of the great new features in C# 7.0 - Pattern Matching. In this article we will
+        go through the new syntax in depth and see on the real examples how to use pattern matching and how it actually works.
+    </p>
+
+    <p style='position: absolute; color:white;z-index:0;' id='p2'>
+        As you can see, pattern matching and the new syntax related to it help simplify life very much and make the code much cleaner.
+        There are rumors that all this stuff will be even more extended in the next language versions. And now, try new stuff
+        in your projects and may the force be with you!
+    </p>
+    <div id='transitionDiv' style="position:absolute;display: block;margin: 4px -8px"></div>
+
+
+</body>
+<script>
+    $(document).ready(function () {
+        $("p").click(function () {
+            //$('span:last-of-type').remove();
+            // var newLeft = $('span:last-of-type').position().left;
+            // var newtop = $('span:last-of-type').position().top;
+            var position = getPosition('#newSpan');
+            $('#oldSpan').animate({
+                left: (position.left),
+                top: (position.top)
+            }, 1000);
+
+        });
+
+        // function devideContent
+        function getPosition(itemSelector) {
+            return $(itemSelector).position();
+        }
+
+        $('#btnRun').click(function () {
+            /*
+            1- split p1 into words list
+            2- split p2 into words list
+            3- for each word from p1 in p2 (1- put it in queue with new position, remove it from p2 list)
+            */
+            var p1 = $('#p1').text().split(' ');
+            var p2 = $('#p2').text().split(' ');
+
+            var p1html = '';
+            $('#p1').html('');
+            for (var i = 0; i < p1.length; i++) {
+                var elmnt = "<span style='position:relative;' id='p1_" + i + "'> " + p1[i] + "</span>"
+                $('#p1').append(elmnt);
+            }
+
+            var p2html = '';
+            $('#p2').html('');
+            for (var i = 0; i < p2.length; i++) {
+                var elmnt = "<span style='position:relative;' id='p2_" + i + "'> " + p2[i] + "</span>"
+                $('#p2').append(elmnt);
+            }
+
+            var intersect = [];
+            for (var i = 0; i < p1.length; i++) {
+                if (p1[i] !== '' && p2.indexOf(p1[i]) > -1) {
+                    intersect.push({ Word: p1[i], p1_id: '#p1_' + i, oldPosition: getPosition('#p1_' + i), newPosition: getPosition('#p2_' + p2.indexOf(p1[i])) });
+                    $('#p1_' + i).addClass('p2Included');
+
+                    //p2.splice(p2.indexOf(p1[i]), 1);
+                } else {
+                    $('#p1_' + i).addClass('p2NotIncluded');
+                }
+            }
+            //hide p1
+            $('#p1').hide('slow');
+            //create intersect words
+            for (var i = 0; i < intersect.length; i++) {
+                var elmnt = intersect[i];
+                $('#transitionDiv').append('<span id="inter_' + i + '" data-newLeft="' + elmnt.newPosition.left + '" data-newTop="' + elmnt.newPosition.top + '"  style="font-weight:normal;position:absolute ;color:black;margin:12px; left:' + elmnt.oldPosition.left + 'px;top:' + elmnt.oldPosition.top + 'px">' + elmnt.Word + '</span>');
+            }
+            //animate intersect words to new positions
+            for (var i = 0; i < intersect.length; i++) {
+                $('#inter_' + i).animate({
+                    left: $('#inter_' + i).attr('data-newLeft'),
+                    top: $('#inter_' + i).attr('data-newTop')
+                }, 2000, function () {
+                    setTimeout(() => {
+                        $('#transitionDiv > span').remove();    
+                    }, 500);                    
+                });
+            }
+            //hide intersect words
+            //show p2
+            setTimeout(() => {
+                $('#p2').animate({ color: 'black' }, 1000);
+            }, 2000);
+
+
+            // for (var i = 0; i < intersect.length; i++) {
+            //     $(intersect[i].p1_id).animate({
+            //         left: (intersect[i].position.left),
+            //         top: (intersect[i].position.top)
+            //     }, 1000);
+            // }
+            console.log(intersect);
+        });
+    });
+
+</script>
+
+</html>
