@@ -24,16 +24,33 @@
 
     <input type="button" value="Run" id='btnRun' />
     <p style='position: absolute; background: white;z-index: 10;;' id='p1'>
-        Every new version of C# language specification brings us something tasty to try, something that makes the developer’s life
-        easier and the code more clean and understandable. Fortunately, version 7.0 is not an exception! With the following
-        description, I’d like to show one of the great new features in C# 7.0 - Pattern Matching. In this article we will
-        go through the new syntax in depth and see on the real examples how to use pattern matching and how it actually works.
+        Generally speaking, poorly defined or definable projects require much close, verbal
+collaboration, especially in the beginning phases of the project, making fluently
+spoken English – or other language of your choice - a necessary attribute of at
+least one member of the outsourced team. The fluency of spoken English also has
+a cultural side. The same words may very well carry completely different meanings
+for people with different cultural backgrounds. Cultural proximity or mutual
+understanding of the partnerʼs cultural context are strong foundations on which to
+build and maintain a good relationship. The domain knowledge is important in
+that the necessary vocabulary must be known by both parties, and can cost
+considerable time if you have to teach your vendor a new domain. In general, it is
+much more efficient to develop your product with those who have previous
+experience within your industry and the type of solution you are trying to
+develop.
     </p>
 
     <p style='position: absolute; color:white;z-index:0;' id='p2'>
-        As you can see, pattern matching and the new syntax related to it help simplify life very much and make the code much cleaner.
-        There are rumors that all this stuff will be even more extended in the next language versions. And now, try new stuff
-        in your projects and may the force be with you!
+        You may choose to visit the vendor to work with the whole team on their premises
+or have a key member of the offshore team work on-site at your offices. Such a
+solution is particularly useful at the fuzzy front-end of the process when
+collaborating on requirements specification and system design as well as at
+important moments in the project implementation, e.g. when dealing with a major
+pivot. Physical proximity fosters communication and helps get the job done better
+and faster.
+Last, people on both sides must know who the boss is in both places. They must
+know who to go to for the many issues, from technical to interpersonal, that can,
+and will, sprout up during the project. They must also know who is responsible for
+approvals of changes and final renditions.
     </p>
     <div id='transitionDiv' style="position:absolute;display: block;margin: 4px -8px"></div>
 
@@ -57,6 +74,8 @@
         function getPosition(itemSelector) {
             return $(itemSelector).position();
         }
+
+        $('p').css('width', '80%');
 
         $('#btnRun').click(function () {
             /*
@@ -103,8 +122,8 @@
             for (var i = 0; i < intersect.length; i++) {
                 $('#inter_' + i).animate({
                     left: $('#inter_' + i).attr('data-newLeft'),
-                    top: $('#inter_' + i).attr('data-newTop')
-                }, 2000, function () {
+                    top: $('#inter_' + i).attr('data-newTop'),                    
+                }, 1000, function () {
                     setTimeout(() => {
                         $('#transitionDiv > span').remove();    
                     }, 500);                    
@@ -114,7 +133,7 @@
             //show p2
             setTimeout(() => {
                 $('#p2').animate({ color: 'black' }, 1000);
-            }, 2000);
+            }, 1000);
 
 
             // for (var i = 0; i < intersect.length; i++) {
@@ -123,6 +142,7 @@
             //         top: (intersect[i].position.top)
             //     }, 1000);
             // }
+
             console.log(intersect);
         });
     });
